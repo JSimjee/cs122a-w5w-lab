@@ -1,0 +1,75 @@
+#! /home/js/.local/bin/oss-cad-suite/bin/vvp
+:ivl_version "14.0 (devel)" "(s20251012-146-g41d07c3e6)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/home/js/.local/bin/oss-cad-suite/lib/ivl/system.vpi";
+:vpi_module "/home/js/.local/bin/oss-cad-suite/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/home/js/.local/bin/oss-cad-suite/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/home/js/.local/bin/oss-cad-suite/lib/ivl/v2005_math.vpi";
+:vpi_module "/home/js/.local/bin/oss-cad-suite/lib/ivl/va_math.vpi";
+:vpi_module "/home/js/.local/bin/oss-cad-suite/lib/ivl/v2009.vpi";
+S_0x55558f2a9e10 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_0x55558f2a9fa0 .scope module, "lcd" "lcd" 3 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "rst";
+    .port_info 1 /INPUT 1 "pclk";
+    .port_info 2 /OUTPUT 1 "LCD_DE";
+    .port_info 3 /OUTPUT 5 "LCD_B";
+    .port_info 4 /OUTPUT 6 "LCD_G";
+    .port_info 5 /OUTPUT 5 "LCD_R";
+o0x716376ae8018 .functor BUFZ 5, c4<zzzzz>; HiZ drive
+v0x55558f2ab980_0 .net "LCD_B", 4 0, o0x716376ae8018;  0 drivers
+o0x716376ae8048 .functor BUFZ 1, c4<z>; HiZ drive
+v0x55558f2abcd0_0 .net "LCD_DE", 0 0, o0x716376ae8048;  0 drivers
+o0x716376ae8078 .functor BUFZ 6, c4<zzzzzz>; HiZ drive
+v0x55558f2f5370_0 .net "LCD_G", 5 0, o0x716376ae8078;  0 drivers
+o0x716376ae80a8 .functor BUFZ 5, c4<zzzzz>; HiZ drive
+v0x55558f2f5430_0 .net "LCD_R", 4 0, o0x716376ae80a8;  0 drivers
+o0x716376ae80d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x55558f2f5510_0 .net "pclk", 0 0, o0x716376ae80d8;  0 drivers
+o0x716376ae8108 .functor BUFZ 1, c4<z>; HiZ drive
+v0x55558f2f5620_0 .net "rst", 0 0, o0x716376ae8108;  0 drivers
+v0x55558f2f56e0_0 .var/2s "x", 31 0;
+v0x55558f2f57c0_0 .var/2s "y", 31 0;
+E_0x55558f2cf3e0 .event anyedge, v0x55558f2f5510_0;
+S_0x55558f2e3dd0 .scope module, "top" "top" 4 2;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "CLK";
+    .port_info 1 /OUTPUT 1 "LCD_CLK";
+    .port_info 2 /OUTPUT 1 "LCD_DEN";
+    .port_info 3 /OUTPUT 5 "LCD_R";
+    .port_info 4 /OUTPUT 6 "LCD_G";
+    .port_info 5 /OUTPUT 5 "LCD_B";
+o0x716376ae82b8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x55558f2f5960_0 .net "CLK", 0 0, o0x716376ae82b8;  0 drivers
+o0x716376ae82e8 .functor BUFZ 5, c4<zzzzz>; HiZ drive
+v0x55558f2f5a40_0 .net "LCD_B", 4 0, o0x716376ae82e8;  0 drivers
+o0x716376ae8318 .functor BUFZ 1, c4<z>; HiZ drive
+v0x55558f2f5b20_0 .net "LCD_CLK", 0 0, o0x716376ae8318;  0 drivers
+o0x716376ae8348 .functor BUFZ 1, c4<z>; HiZ drive
+v0x55558f2f5bc0_0 .net "LCD_DEN", 0 0, o0x716376ae8348;  0 drivers
+o0x716376ae8378 .functor BUFZ 6, c4<zzzzzz>; HiZ drive
+v0x55558f2f5c80_0 .net "LCD_G", 5 0, o0x716376ae8378;  0 drivers
+o0x716376ae83a8 .functor BUFZ 5, c4<zzzzz>; HiZ drive
+v0x55558f2f5db0_0 .net "LCD_R", 4 0, o0x716376ae83a8;  0 drivers
+    .scope S_0x55558f2a9fa0;
+T_0 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x55558f2f56e0_0, 0, 32;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x55558f2f57c0_0, 0, 32;
+    %end;
+    .thread T_0, $init;
+    .scope S_0x55558f2a9fa0;
+T_1 ;
+    %wait E_0x55558f2cf3e0;
+    %jmp T_1;
+    .thread T_1, $push;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "src/lcd.sv";
+    "src/top.sv";

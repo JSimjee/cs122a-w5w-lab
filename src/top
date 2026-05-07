@@ -1,0 +1,135 @@
+#! /home/js/.local/bin/oss-cad-suite/bin/vvp
+:ivl_version "14.0 (devel)" "(s20251012-146-g41d07c3e6)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/home/js/.local/bin/oss-cad-suite/lib/ivl/system.vpi";
+:vpi_module "/home/js/.local/bin/oss-cad-suite/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/home/js/.local/bin/oss-cad-suite/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/home/js/.local/bin/oss-cad-suite/lib/ivl/v2005_math.vpi";
+:vpi_module "/home/js/.local/bin/oss-cad-suite/lib/ivl/va_math.vpi";
+:vpi_module "/home/js/.local/bin/oss-cad-suite/lib/ivl/v2009.vpi";
+S_0x555578762de0 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_0x555578762f70 .scope module, "top" "top" 3 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "CLK";
+    .port_info 1 /OUTPUT 1 "LCD_CLK";
+    .port_info 2 /OUTPUT 1 "LCD_DEN";
+    .port_info 3 /OUTPUT 5 "LCD_R";
+    .port_info 4 /OUTPUT 6 "LCD_G";
+    .port_info 5 /OUTPUT 5 "LCD_B";
+o0x731c4f8e80d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x5555787b4dd0_0 .net "CLK", 0 0, o0x731c4f8e80d8;  0 drivers
+v0x5555787b4e90_0 .net "LCD_B", 4 0, v0x555578764980_0;  1 drivers
+o0x731c4f8e8258 .functor BUFZ 1, c4<z>; HiZ drive
+v0x5555787b4f60_0 .net "LCD_CLK", 0 0, o0x731c4f8e8258;  0 drivers
+v0x5555787b5030_0 .net "LCD_DEN", 0 0, v0x555578764cd0_0;  1 drivers
+v0x5555787b5100_0 .net "LCD_G", 5 0, v0x5555787b4890_0;  1 drivers
+v0x5555787b51f0_0 .net "LCD_R", 4 0, v0x5555787b4980_0;  1 drivers
+S_0x55557879d5c0 .scope module, "theBestLCD" "lcd" 3 18, 4 1 0, S_0x555578762f70;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "pclk";
+    .port_info 1 /OUTPUT 1 "LCD_DE";
+    .port_info 2 /OUTPUT 5 "LCD_B";
+    .port_info 3 /OUTPUT 6 "LCD_G";
+    .port_info 4 /OUTPUT 5 "LCD_R";
+v0x555578764980_0 .var "LCD_B", 4 0;
+v0x555578764cd0_0 .var "LCD_DE", 0 0;
+v0x5555787b4890_0 .var "LCD_G", 5 0;
+v0x5555787b4980_0 .var "LCD_R", 4 0;
+v0x5555787b4a60_0 .net "pclk", 0 0, o0x731c4f8e80d8;  alias, 0 drivers
+v0x5555787b4b70_0 .var/2s "x", 31 0;
+v0x5555787b4c50_0 .var/2s "y", 31 0;
+E_0x555578787340 .event posedge, v0x5555787b4a60_0;
+    .scope S_0x55557879d5c0;
+T_0 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5555787b4b70_0, 0, 32;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5555787b4c50_0, 0, 32;
+    %end;
+    .thread T_0, $init;
+    .scope S_0x55557879d5c0;
+T_1 ;
+    %wait E_0x555578787340;
+    %load/vec4 v0x5555787b4b70_0;
+    %cmpi/e 525, 0, 32;
+    %jmp/0xz  T_1.0, 4;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x5555787b4b70_0, 0;
+    %load/vec4 v0x5555787b4c50_0;
+    %cmpi/e 285, 0, 32;
+    %jmp/0xz  T_1.2, 4;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x5555787b4c50_0, 0;
+    %jmp T_1.3;
+T_1.2 ;
+    %load/vec4 v0x5555787b4c50_0;
+    %addi 1, 0, 32;
+    %assign/vec4 v0x5555787b4c50_0, 0;
+T_1.3 ;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v0x5555787b4b70_0;
+    %addi 1, 0, 32;
+    %assign/vec4 v0x5555787b4b70_0, 0;
+T_1.1 ;
+    %load/vec4 v0x5555787b4b70_0;
+    %cmpi/s 480, 0, 32;
+    %flag_or 5, 4; GT is !LE
+    %flag_inv 5;
+    %jmp/1 T_1.6, 5;
+    %flag_mov 8, 5;
+    %load/vec4 v0x5555787b4c50_0;
+    %cmpi/s 272, 0, 32;
+    %flag_or 5, 4; GT is !LE
+    %flag_inv 5;
+    %flag_or 5, 8;
+T_1.6;
+    %jmp/0xz  T_1.4, 5;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x555578764cd0_0, 0;
+    %jmp T_1.5;
+T_1.4 ;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x555578764cd0_0, 0;
+T_1.5 ;
+    %load/vec4 v0x5555787b4b70_0;
+    %cmpi/s 160, 0, 32;
+    %jmp/0xz  T_1.7, 5;
+    %pushi/vec4 31, 0, 5;
+    %assign/vec4 v0x5555787b4980_0, 0;
+    %pushi/vec4 0, 0, 6;
+    %assign/vec4 v0x5555787b4890_0, 0;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v0x555578764980_0, 0;
+    %jmp T_1.8;
+T_1.7 ;
+    %load/vec4 v0x5555787b4b70_0;
+    %cmpi/s 320, 0, 32;
+    %jmp/0xz  T_1.9, 5;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v0x5555787b4980_0, 0;
+    %pushi/vec4 63, 0, 6;
+    %assign/vec4 v0x5555787b4890_0, 0;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v0x555578764980_0, 0;
+    %jmp T_1.10;
+T_1.9 ;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v0x5555787b4980_0, 0;
+    %pushi/vec4 0, 0, 6;
+    %assign/vec4 v0x5555787b4890_0, 0;
+    %pushi/vec4 31, 0, 5;
+    %assign/vec4 v0x555578764980_0, 0;
+T_1.10 ;
+T_1.8 ;
+    %jmp T_1;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "top.sv";
+    "lcd.sv";
